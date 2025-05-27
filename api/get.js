@@ -69,7 +69,8 @@ module.exports = async (req, res) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         return res.status(500).json({ 
           error: 'GAS endpoint returned HTML instead of JSON. Please check your script deployment and permissions.',
-          details: 'Make sure your Google Apps Script is deployed as a web app with proper permissions.'
+          details: 'Make sure your Google Apps Script is deployed as a web app with proper permissions.',
+          htmlContent: text
         });
       }
       
