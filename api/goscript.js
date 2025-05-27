@@ -3,13 +3,13 @@ module.exports = async (req, res) => {
   // Xử lý preflight request (OPTIONS)
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(204).send('');
   }
 
-  // Chỉ xử lý POST
-  if (req.method !== 'POST') {
+  // Chỉ xử lý GET
+  if (req.method !== 'GET') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 
   try {
     const response = await fetch(gasEndpoint, {
-      method: 'POST',
+      method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
     });
